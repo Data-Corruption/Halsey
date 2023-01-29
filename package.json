@@ -1,0 +1,28 @@
+{
+  "name": "halsey",
+  "version": "1.0.0",
+  "description": "Discord bot with web gui",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Data-Corruption/Halsey.git"
+  },
+  "author": "Matthew Pombo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Data-Corruption/Halsey/issues"
+  },
+  "homepage": "https://github.com/Data-Corruption/Halsey#readme",
+  "dependencies": {
+    "bufferutil": "^4.0.7",
+    "discord.js": "^14.7.1",
+    "erlpack": "github:discord/erlpack",
+    "typescript": "^4.9.4",
+    "utf-8-validate": "^6.0.2",
+    "zlib-sync": "^0.1.7"
+  }
+}
