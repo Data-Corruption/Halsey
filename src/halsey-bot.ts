@@ -1,5 +1,5 @@
-import { Events, GatewayIntentBits, Partials } from 'discord.js';
-import { GuiSite } from './gui_site';
+import { Events, IntentsBitField, Partials } from 'discord.js';
+import { GuiSite } from './gui_site/gui_site';
 import { Config } from './config';
 import { App } from './app';
 import * as path from 'path';
@@ -9,10 +9,10 @@ Config.load();
 
 App.init(
     {intents: [ 
-        GatewayIntentBits.Guilds, 
-        GatewayIntentBits.GuildModeration,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.DirectMessages 
+        IntentsBitField.Flags.Guilds,
+        IntentsBitField.Flags.GuildModeration,
+        IntentsBitField.Flags.GuildMessages,
+        IntentsBitField.Flags.DirectMessages
     ], 
     partials: [
         Partials.Channel
@@ -22,10 +22,13 @@ App.init(
 
 App.loadCommands();
 
-if (process.argv.includes('-init')) { App.updateGlobalCommands(); }
-
 App.client.once(Events.ClientReady, c => {
     console.log(`Ready! Logged in as ${c.user.tag}`);
+    
+    Config.data.clientId = c.user.id;
+    Config.save();
+
+    if (process.argv.includes('-init')) { App.updateGlobalCommands(); }
 
     App.updateGuilds();
     App.client.on(Events.GuildCreate, guild => { App.updateGuilds(); });

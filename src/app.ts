@@ -53,9 +53,8 @@ class App {
         }
         (async () => {
             try {
-                console.log(`Updating ${commandsData.length} global application (/) commands.`);
                 const data = await this.rest.put(Routes.applicationCommands(Config.data.clientId), { body: commandsData });
-                console.log(`Successfully updated ${commandsData.length} global application (/) commands.`);
+                console.log(`Updated ${commandsData.length} global application (/) commands.`);
             } catch (error) {
                 console.error(error);
                 process.exit(1);
@@ -67,23 +66,27 @@ class App {
             console.error(`Bot is not in guild ${guildID}.`);
             return;
         }
-        const guild = Config.data.guilds.find(g => g.id === guildID);
-        if (!guild) {
+        const index = Config.data.guilds.findIndex(g => g.id === guildID);
+        if (index === -1) {
             console.error(`Guild ${guildID} not found in config.json.`);
             return;
         }
-        const commandWhitelist = guild.commandWhitelist;
         const commandsData = [];
-        for (const command of this.commands.values()) {
-            if (commandWhitelist.includes(command.data.name) && command.isGlobal === false) {
-                commandsData.push(command.data.toJSON());
+        if (Config.data.guilds[index].commandWhitelist) {
+            for (const command of Config.data.guilds[index].commandWhitelist) {
+                if (!this.commands.get(command)) {
+                    console.error(`Command ${command} not found.`);
+                    return;
+                }
+                if (this.commands.get(command).isGlobal === false) {
+                    commandsData.push(this.commands.get(command).data.toJSON());
+                }
             }
         }
         (async () => {
             try {
-                console.log(`Updating ${commandsData.length} guild application (/) commands in ${guild.id}.`);
                 const data = await this.rest.put(Routes.applicationGuildCommands(Config.data.clientId, guildID), { body: commandsData });
-                console.log(`Successfully updated ${guild.id}'s guild application (/) commands.`);
+                console.log(`Updated ${guildID}'s guild application (/) commands.`);
             } catch (error) {
                 console.error(error);
             }

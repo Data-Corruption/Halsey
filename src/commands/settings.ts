@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { GuiSite } from '../gui_site';
+import { GuiSite } from '../gui_site/gui_site';
 import { Config } from '../config';
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
 		.setDescription('Links a settings menu for the bot.'),
 	async execute(interaction: ChatInputCommandInteraction) {
 
-		if (!Config.data.guiSite.adminWhitelist.includes(interaction.user.id)) {
+		if (!Config.data.adminWhitelist.includes(interaction.user.id)) {
 			await interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
 			return;
 		}
@@ -23,7 +23,7 @@ module.exports = {
 					new ButtonBuilder()
 						.setLabel('Settings Menu')
 						.setStyle(ButtonStyle.Link)
-						.setURL(`https://${Config.data.guiSite.domain}:${Config.data.guiSite.port}${Config.data.guiSite.botRoute}/settings/${GuiSite.session.create()}`)
+						.setURL(`${GuiSite.urlPrefix}${Config.data.guiSite.domain}:${Config.data.guiSite.port}${Config.data.guiSite.botRoute}/${GuiSite.session.create()}`)
 				);
 			await interaction.reply({ components: [row], ephemeral: true });
 		}

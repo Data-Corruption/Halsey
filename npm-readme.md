@@ -1,4 +1,4 @@
-# Halsey &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![npm](https://img.shields.io/npm/v/halsey-bot) ![Build Status](https://img.shields.io/github/actions/workflow/status/Data-Corruption/Halsey/main.yml) 
+# Halsey &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Halsey is a simple Discord bot with a web gui settings page.
 
@@ -103,4 +103,4 @@ I recommend using a program like [pm2](https://pm2.keymetrics.io/) to run and ma
 
 ## Developer Guide
 
-wip.
+See the [github repo readme](https://github.com/Data-Corruption/Halsey)
