@@ -1,7 +1,7 @@
 {
   "name": "halsey-bot",
-  "version": "1.0.0",
-  "description": "Halsey is a simple Discord bot with web based settings page",
+  "version": "1.0.2",
+  "description": "Halsey is a simple Discord bot with a web based settings page",
   "readme": "npm-readme.md",
   "keywords": [
     "discord",
@@ -23,7 +23,6 @@
   "scripts": {
     "start": "node ./bin/halsey-bot.js",
     "build": "set NODE_ENV=development&& npm ci && node ./build.js && tsc",
-    "zip": "node ./zip.js",
     "show-version": "node -p \"require('./package.json').version\""
   },
   "files": [
@@ -50,7 +49,6 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^18.13.0",
-    "7zip-bin": "^5.2.0",
     "typescript": "^4.9.5"
   }
 }

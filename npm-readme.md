@@ -1,4 +1,4 @@
-# Halsey &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+# Halsey &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![npm](https://img.shields.io/npm/v/halsey-bot) ![Build Status](https://img.shields.io/github/actions/workflow/status/Data-Corruption/Halsey/main.yml) 
 
 Halsey is a simple Discord bot with a web gui settings page.
 
@@ -15,28 +15,17 @@ Halsey is a simple Discord bot with a web gui settings page.
 * Create polls
 * and more
 
-## Getting Started
-
-#### **_Prerequisites_**
-* [Node.js](https://nodejs.org/) version 16.9.0 or higher
-
-### Installation
-
-#### **_npm_** - Open a folder then open a terminal in that folder and run the following
+## Installation
 ```
-npm install {package-name}
+npm i halsey-bot
 ```
-or
-#### **_zip_** - Extract the zip into a folder then open a terminal in that folder and run the following
-```
-npm ci
-```
+**IMPORTANT** requires [Node.js](https://nodejs.org/) version 16.9.0 or higher
 
-### Filling Out The Config
+## Filling Out The Config
 
-After installing the bot you run it once to generate the `config.json`. You can run the bot by using the following command in the same terminal and location you just installed the bot in.
+After installing the bot run it once to generate the `config.json`. You can run the bot by using the following command
 ```
-node ./bin/halsey-bot.js
+node ./node_modules/halsey-bot/bin/halsey-bot.js
 ```
 
 <table>
@@ -48,20 +37,8 @@ node ./bin/halsey-bot.js
     </thead>
     <tbody>
         <tr>
-          <td>version</td>
-          <td>This is set and managed by the bot</td>
-        </tr>
-        <tr>
           <td>botToken</td>
           <td>Before you use the bot it needs an account to control, you create one at the <a href="https://discord.com/developers/applications">Discord Developer Portal</a>. In that process it gives you a token, place that token here. After creating the bot account you can invite it to your server(s) by going to the developer portal and under OAuth2 check the bot, applications.commands, and administrator boxes then use the link it gives you.</td>
-        </tr>
-        <tr>
-          <td>clientId</td>
-          <td>This is set and managed by the bot</td>
-        </tr>
-        <tr>
-          <td>guilds</td>
-          <td>This is set and managed by the bot</td>
         </tr>
         <tr>
           <td>adminWhitelist</td>
@@ -73,7 +50,7 @@ node ./bin/halsey-bot.js
         </tr>
         <tr>
           <td>domain</td>
-          <td>This is the ip or domain pointing to the ip of the computer hosting the bot</td>
+          <td>This is the ip or domain pointing to the ip of the computer hosting the bot eg, "www.example.com"</td>
         </tr>
         <tr>
           <td>botRoute</td>
@@ -89,18 +66,18 @@ node ./bin/halsey-bot.js
     </tbody>
 </table>
 
-### Enabling Commands
+**IMPORTANT** All other fields are set and managed by the bot and can safely be ignored.
 
-To enable commands for the bot, you will first need to run the bot with the -init argument `node ./bin/halsey-bot.js -init`. This will initialize the bot and register any global commands.
+## Enabling Commands
 
-Once the bot is initialized, you can update global commands by running the bot with the -init argument again. This will update any existing global commands to the latest version.
+To enable commands for the bot, you will first need to run the bot with the -init argument `node ./node_modules/halsey-bot/bin/halsey-bot.js -init`. This will enable/update all global commands. You can update global commands at anytime by running the bot with the -init argument again.
 
-To enable or update guild(server only) commands, you can use the `/settings` command. This will generate a link to a web GUI where you can enable or update commands at will.
+To enable/update guild(server only) commands, you can use the `/settings` command. This will generate a link to a web GUI where you can enable/update commands at will.
 
-### Final Notes
+## Final Notes
 
 I recommend using a program like [pm2](https://pm2.keymetrics.io/) to run and manage the bot process.
 
 ## Developer Guide
 
-See the [github repo readme](https://github.com/Data-Corruption/Halsey)
+See the [github repo readme](https://github.com/Data-Corruption/Halsey#developer-guide).
