@@ -1,3 +1,5 @@
-node_modules
+halsey-bot.zip
 config.json
-*.js
+node_modules/
+.vscode/
+bin/

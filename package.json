@@ -1,28 +1,56 @@
 {
-  "name": "halsey",
+  "name": "halsey-bot",
   "version": "1.0.0",
-  "description": "Discord bot with web gui",
-  "main": "index.js",
-  "scripts": {
-    "compile": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Halsey is a simple Discord bot with web based settings page",
+  "readme": "npm-readme.md",
+  "keywords": [
+    "discord",
+    "bot",
+    "web",
+    "gui"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Data-Corruption/Halsey.git"
   },
-  "author": "Matthew Pombo",
-  "license": "MIT",
+  "homepage": "https://github.com/Data-Corruption/Halsey#readme",
   "bugs": {
     "url": "https://github.com/Data-Corruption/Halsey/issues"
   },
-  "homepage": "https://github.com/Data-Corruption/Halsey#readme",
+  "author": "Matthew Pombo aka DataCorruption",
+  "license": "MIT",
+  "bin": "bin/halsey-bot.js",
+  "scripts": {
+    "start": "node ./bin/halsey-bot.js",
+    "build": "set NODE_ENV=development&& npm ci && node ./build.js && tsc",
+    "zip": "node ./zip.js",
+    "show-version": "node -p \"require('./package.json').version\""
+  },
+  "files": [
+    "bin/**/*",
+    "package.json",
+    "package-lock.json",
+    "npm-readme.md",
+    "LICENSE.md"
+  ],
+  "engines": {
+    "node": ">=16.9.0"
+  },
   "dependencies": {
+    "body-parser": "^1.20.1",
     "bufferutil": "^4.0.7",
     "discord.js": "^14.7.1",
     "erlpack": "github:discord/erlpack",
-    "typescript": "^4.9.4",
+    "events": "^3.3.0",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
     "utf-8-validate": "^6.0.2",
     "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.13.0",
+    "7zip-bin": "^5.2.0",
+    "typescript": "^4.9.5"
   }
 }

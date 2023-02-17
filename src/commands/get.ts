@@ -1,11 +1,12 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 
 module.exports = {
-    isGlobal: true,
+	isGlobal: false,
+	type: 'CHAT_INPUT',
 	data: new SlashCommandBuilder()
-		.setName('settings')
-		.setDescription('Links a settings menu for the bot.'),
+		.setName('get')
+		.setDescription('Get\'s a bookmarked link (each guild has their own bookmarks)'),
 	async execute(interaction: ChatInputCommandInteraction) {
-		await interaction.reply('wip');
+		await interaction.reply('wip!');
 	},
 };
