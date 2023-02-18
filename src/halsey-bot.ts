@@ -2,8 +2,6 @@ import { Events, IntentsBitField, Partials } from 'discord.js';
 import { GuiSite } from './gui_site/gui_site';
 import { Config } from './config';
 import { App } from './app';
-import * as path from 'path';
-import * as fs from 'fs';
 
 Config.load();
 
@@ -39,7 +37,7 @@ App.client.once(Events.ClientReady, c => {
     App.client.on(Events.InteractionCreate, async interaction => {
         if (App.isUpdating) return;
     
-        if (interaction.isChatInputCommand()) {
+        if (interaction.isChatInputCommand() || interaction.isContextMenuCommand()) {
             const command = App.commands.get(interaction.commandName);
             if (!command) {
                 console.error(`Command ${interaction.commandName} not found.`); 

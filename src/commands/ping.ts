@@ -1,4 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
+import { tempReply } from '../temp_reply';
 
 module.exports = {
 	isGlobal: true,
@@ -7,9 +8,11 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
 	async execute(interaction: ChatInputCommandInteraction) {
-		await interaction.reply('Pong!');
-
-		// if subcommand "test"
-		// if (interaction.options.getSubcommand() === 'test') {
+		await interaction.reply('Pong!').then(() => {
+			setTimeout(() => {
+				interaction.deleteReply();
+			}, 5000);
+		});
+		tempReply(interaction, 'Pong!');
 	},
 };
