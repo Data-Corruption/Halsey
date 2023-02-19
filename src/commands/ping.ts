@@ -8,11 +8,6 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
 	async execute(interaction: ChatInputCommandInteraction) {
-		await interaction.reply('Pong!').then(() => {
-			setTimeout(() => {
-				interaction.deleteReply();
-			}, 5000);
-		});
 		tempReply(interaction, 'Pong!');
 	},
 };

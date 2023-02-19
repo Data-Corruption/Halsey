@@ -4,7 +4,11 @@ import { ChatInputCommandInteraction, ContextMenuCommandInteraction } from 'disc
 export function tempReply(interaction: ChatInputCommandInteraction | ContextMenuCommandInteraction, content: string, ephemeral?: boolean, timeout?: number) {
     interaction.reply({ content: content, ephemeral: ephemeral }).then(() => {
         setTimeout(() => {
-            interaction.deleteReply();
+            try {
+                interaction.deleteReply();
+            } catch (error) {
+                console.log(error);
+            }
         }, timeout ? timeout : 5000);
     });
 }
