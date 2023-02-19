@@ -1,11 +1,16 @@
 import * as path from "path";
 import * as fs from "fs";
 
+interface BookmarkInterface {
+  name: string;
+  url: string;
+}
+
 interface GuildInterface {
   id: string;
   commandWhitelist: string[];
   archiveChannelId: string;
-  bookmarks: Map<string, string>;
+  bookmarks: BookmarkInterface[];
 }
 
 interface ConfigInterface {

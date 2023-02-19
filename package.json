@@ -1,6 +1,6 @@
 {
   "name": "halsey-bot",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Halsey is a simple Discord bot with a web based settings page",
   "keywords": [
     "discord",
@@ -28,7 +28,7 @@
     "bin/**/*",
     "package.json",
     "package-lock.json",
-    "npm-readme.md",
+    "README.md",
     "LICENSE.md"
   ],
   "engines": {
