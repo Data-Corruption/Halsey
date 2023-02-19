@@ -2,22 +2,15 @@ import { ChatInputCommandInteraction, SlashCommandBuilder, GuildTextBasedChannel
 import { tempReply } from '../temp_reply';
 import { Config } from '../config';
 import { App } from '../app';
-import * as fs from 'fs';
-import path from 'path';
-
-const archive_path = path.resolve(__dirname, '..', 'archive.json');
 
 function getArchiveChannel(guildId: string): GuildTextBasedChannel | string {
 
-    if (!fs.existsSync(archive_path)) {
-        return 'ERROR - Archive channel is not set. You can set one by using `/archive set_channel`';
+    // get guild from config
+    const config_guild = Config.data.guilds.find(g => g.id === guildId);
+    if (!config_guild) {
+        return 'ERROR - could not get guild! try restarting the bot.';
     }
-
-    const archive_json = require(archive_path);
-    const archive_channel_id = archive_json[guildId];
-
-    // if archive_channel_id is not set, reply with error
-    if (!archive_channel_id) {
+    if (!config_guild.archiveChannelId || config_guild.archiveChannelId === '') {
         return 'ERROR - Archive channel is not set. You can set one by using `/archive set_channel`';
     }
 
@@ -28,7 +21,7 @@ function getArchiveChannel(guildId: string): GuildTextBasedChannel | string {
     }
 
     // get archive channel from archive_channel_id
-    const archive_channel = guild.channels.cache.get(archive_channel_id) as GuildTextBasedChannel;
+    const archive_channel = guild.channels.cache.get(config_guild.archiveChannelId) as GuildTextBasedChannel;
     if (!archive_channel) {
         return 'ERROR - archive channel no longer exist! You can set a new one by using `/archive set_channel`';
     }
@@ -79,19 +72,16 @@ module.exports = {
             const archive_channel = interaction.options.getChannel('channel');
             if (archive_channel && archive_channel.type === ChannelType.GuildText) {
 
-                if (!fs.existsSync(archive_path)) {
-                    fs.writeFileSync(archive_path, JSON.stringify({}));
+                // get index of guild in config
+                const guild_index = Config.data.guilds.findIndex(g => g.id === interaction.guild?.id);
+                if (guild_index === -1) {
+                    await interaction.reply('ERROR - guild not found! try restarting the bot.');
+                    return;
                 }
 
-                const archive_json = require(archive_path);
-                archive_json[interaction.guild.id] = archive_channel.id;
-
-                fs.writeFile(archive_path, JSON.stringify(archive_json), (err: any) => { 
-                    if (err) { 
-                        console.log(err); 
-                        return;
-                    }
-                });
+                // set archive channel id in config
+                Config.data.guilds[guild_index].archiveChannelId = archive_channel.id;
+                Config.save();
 
                 tempReply(interaction, 'Archive channel set!');
 

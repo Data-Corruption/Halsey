@@ -4,12 +4,12 @@ import * as fs from "fs";
 interface GuildInterface {
   id: string;
   commandWhitelist: string[];
+  archiveChannelId: string;
+  bookmarks: Map<string, string>;
 }
 
 interface ConfigInterface {
   botToken: string;
-  clientId: string;
-  guilds: GuildInterface[];
   adminWhitelist: string[];
   guiSite: {
     port: number;
@@ -18,6 +18,8 @@ interface ConfigInterface {
     sslKeyPath: string;
     sslCertPath: string;
   };
+  clientId: string;
+  guilds: GuildInterface[];
 }
 
 const configPath = path.join(__dirname, "..", "config.json");
@@ -35,8 +37,6 @@ export class Config {
     } else {
       const contents: ConfigInterface = {
         botToken: "",
-        clientId: "",
-        guilds: [],
         adminWhitelist: [],
         guiSite: {
           port: 8443,
@@ -44,7 +44,9 @@ export class Config {
           botRoute: "",
           sslKeyPath: "",
           sslCertPath: ""
-        }
+        },
+        clientId: "",
+        guilds: []
       };
       fs.writeFileSync(configPath, JSON.stringify(contents, null, 4));
       console.log(`Generated config.json at ${configPath}. Please fill in the required felids and restart the bot.`);

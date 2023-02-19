@@ -34,7 +34,7 @@ class App {
         for (const guild of guilds.values()) {
             if (Config.data.guilds.find(g => g.id === guild.id) === undefined) {
                 console.warn(`Bot is in guild ${guild.id}, that guild is not in the config, adding it now.`);
-                Config.data.guilds.push({ id: guild.id, commandWhitelist: [] });
+                Config.data.guilds.push({ id: guild.id, commandWhitelist: [], archiveChannelId: "", bookmarks: new Map() });
             }
         }
         for (const guild of Config.data.guilds) {
