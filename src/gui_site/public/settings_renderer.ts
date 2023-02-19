@@ -29,6 +29,9 @@ try {
         for (const command of data) {
             const commandDiv = document.createElement('div');
             commandDiv.classList.add('command', 'row');
+            if (command.data.description == null) {
+                command.data.description = "No description";
+            }
             commandDiv.innerHTML = `
                 <input type="checkbox" disabled>
                 <label>${command.data.name}</label>
