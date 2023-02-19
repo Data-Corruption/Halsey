@@ -1,3 +1,11 @@
+## 2.1.1
+* updated CHANGELOG.md
+* fixed npm release
+
+## 2.1.0
+* added bookmark commands "get" and "set".
+* fixed temp replies so if you delete them before the bot tries it doesn't crash.
+
 ## 2.0.0
 * Changed config format, old configs now incompatible, you'll likely need to regenerate/refill them.
 * Added - archive commands.
