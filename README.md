@@ -10,9 +10,10 @@ Halsey is a simple Discord bot with a web gui settings page.
 
 ## Functionality
 * Need more than the 50 pin limit? archive messages in a dedicated channel you set!
-* Offers to expanded reddit links that have not expanded properly (eg v.redd.it and crossposts)
+* Can expanded reddit links that have not expanded properly (eg v.redd.it and crossposts) - wip
 * Bookmark links for you and your friends.
-* Create polls
+* Create polls - wip
+* /help to see all commands
 * and more
 
 ## Installation

@@ -17,6 +17,6 @@
     "src/commands/*.ts",
     "src/gui_site/*.ts",
     "src/gui_site/public/*.ts",
-    "src/message_listeners/*.ts",
+    "src/sentiment.js",
   ]
 }
