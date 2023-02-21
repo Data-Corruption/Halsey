@@ -1,4 +1,5 @@
-import { Events, IntentsBitField, Partials } from 'discord.js';
+import { ChannelType, Events, IntentsBitField, Partials } from 'discord.js';
+import * as redditFixer from './message_listeners/reddit_embed_fixer';
 import { GuiSite } from './gui_site/gui_site';
 import { Config } from './config';
 import { App } from './app';
@@ -51,6 +52,14 @@ App.client.once(Events.ClientReady, c => {
             }
         }
 
+    });
+
+    App.client.on(Events.MessageCreate, async message => {
+        if (App.isUpdating) return;
+        if (message.channel.type === ChannelType.DM) return;
+        if (message.author.bot) return;
+
+        await redditFixer.onMessageCreate(message);
     });
 });
 
