@@ -36,3 +36,5 @@ copyFolderRecursiveSync(srcPath, binPath);
 
 // delete all the .ts files in the bin folder and all subfolders
 removeFileByType(binPath, '.ts');
+// delete all the .json files in the bin folder and all subfolders
+removeFileByType(binPath, '.json');

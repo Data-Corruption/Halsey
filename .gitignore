@@ -3,3 +3,5 @@ config.json
 node_modules/
 .vscode/
 bin/
+
+src/weirdWebsites.json

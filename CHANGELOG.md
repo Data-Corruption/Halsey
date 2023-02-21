@@ -1,3 +1,8 @@
+## 2.2.0
+* updated CHANGELOG.md
+* added "help" command
+* added sentiment analysis based responses to mentions of the bot
+
 ## 2.1.1
 * updated CHANGELOG.md
 * fixed npm release
