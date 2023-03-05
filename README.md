@@ -1,4 +1,4 @@
-# Halsey &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![npm](https://img.shields.io/npm/v/halsey-bot) ![Build Status](https://img.shields.io/github/actions/workflow/status/Data-Corruption/Halsey/main.yml) 
+# Halsey &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) <object type="image/svg+xml"><a href="https://www.npmjs.com/package/halsey-bot"><img src="https://img.shields.io/npm/v/halsey-bot"></a></object> ![Build Status](https://img.shields.io/github/actions/workflow/status/Data-Corruption/Halsey/main.yml) 
 
 Halsey is a simple Discord bot with a web gui settings page.
 
@@ -10,11 +10,11 @@ Halsey is a simple Discord bot with a web gui settings page.
 
 ## Functionality
 * Need more than the 50 pin limit? archive messages in a dedicated channel you set!
-* Can expanded reddit links that have not expanded properly (eg v.redd.it and crossposts) - wip
+* OpenAi powered chatbot, whitelist people you want to be able to chat with the bot.
 * Bookmark links for you and your friends.
 * Create polls - wip
 * /help to see all commands
-* and more
+* and more wip
 
 ## Installation
 ```
@@ -40,6 +40,10 @@ node ./node_modules/halsey-bot/bin/halsey-bot.js
         <tr>
           <td>botToken</td>
           <td>Before you use the bot it needs an account to control, you create one at the <a href="https://discord.com/developers/applications">Discord Developer Portal</a>. In that process it gives you a token, place that token here. After creating the bot account you can invite it to your server(s) by going to the developer portal and under OAuth2 check the bot, applications.commands, and administrator boxes then use the link it gives you.</td>
+        </tr>
+        <tr>
+          <td>openaiToken</td>
+          <td>Optional OpenAi api token, you can generate one <a href="https://platform.openai.com/docs/quickstart/add-your-api-key">here</a> after creating an account. Don't forget to set a <a href="https://platform.openai.com/account/billing/limits">usage limit</a></td>
         </tr>
         <tr>
           <td>adminWhitelist</td>

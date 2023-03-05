@@ -1,3 +1,10 @@
+## 3.0.0
+* updated CHANGELOG.md
+* updated README.md
+* updated help command
+* added openai api chat functionality
+* removed sentiment analysis based responses
+
 ## 2.2.0
 * updated CHANGELOG.md
 * added "help" command
