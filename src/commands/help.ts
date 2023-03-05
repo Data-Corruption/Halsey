@@ -28,6 +28,12 @@ module.exports = {
             {name: 'ping', value: 'Pong!', inline: true}
         );
         embed.addFields({name: '\u200b', value: '\u200b'});
+        embed.addFields(
+            {name: 'chat whitelist_add', value: 'Allow user to chat with me', inline: true},
+            {name: 'chat whitelist_remove', value: 'Unallow user to chat with me', inline: true},
+            {name: 'chat usage_policy', value: 'Links usage policy and button to agree if you have not already', inline: true}
+        );
+        embed.addFields({name: '\u200b', value: '\u200b'});
         embed.addFields({name: 'I almost forgot!', value: 'You can also use the context menu on a message to archive it!'});
         embed.addFields({name: '\u200b', value: '\u200b'});
         embed.addFields({name: 'Wha.. what... you wanna see my source code?', value: 'Ok, bu.. but don\'t do anything weird with it, baka [GitHub](https://github.com/Data-Corruption/Halsey) , [NPM](https://www.npmjs.com/package/halsey-bot)'});

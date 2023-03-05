@@ -6,6 +6,11 @@ interface BookmarkInterface {
   url: string;
 }
 
+interface chatUserInterface {
+  id: string;
+  signedUsagePolicy: boolean;
+}
+
 interface GuildInterface {
   id: string;
   commandWhitelist: string[];
@@ -15,6 +20,7 @@ interface GuildInterface {
 
 interface ConfigInterface {
   botToken: string;
+  openaiToken: string;
   adminWhitelist: string[];
   guiSite: {
     port: number;
@@ -24,6 +30,8 @@ interface ConfigInterface {
     sslCertPath: string;
   };
   clientId: string;
+  chatInitMessage: string;
+  chatWhitelist: chatUserInterface[];
   guilds: GuildInterface[];
 }
 
@@ -32,6 +40,7 @@ const configPath = path.join(__dirname, "..", "config.json");
 export class Config {
   public static data: ConfigInterface;
   public static load() {
+    // if config file exists, load it. Otherwise generate a new one
     if (fs.existsSync(configPath)) {
       try {
         this.data = require(configPath) as ConfigInterface;
@@ -42,6 +51,7 @@ export class Config {
     } else {
       const contents: ConfigInterface = {
         botToken: "",
+        openaiToken: "",
         adminWhitelist: [],
         guiSite: {
           port: 8443,
@@ -51,6 +61,8 @@ export class Config {
           sslCertPath: ""
         },
         clientId: "",
+        chatInitMessage: "",
+        chatWhitelist: [],
         guilds: []
       };
       fs.writeFileSync(configPath, JSON.stringify(contents, null, 4));
@@ -59,6 +71,24 @@ export class Config {
     }
   }
   public static save() {
+    // if missing fields, add them
+    if (this.data.botToken === undefined) { this.data.botToken = ""; }
+    if (this.data.openaiToken === undefined) { this.data.openaiToken = ""; }
+    if (this.data.adminWhitelist === undefined) { this.data.adminWhitelist = []; }
+    if (this.data.guiSite === undefined) {
+      this.data.guiSite = {
+        port: 8443,
+        domain: "",
+        botRoute: "",
+        sslKeyPath: "",
+        sslCertPath: ""
+      };
+    }
+    if (this.data.clientId === undefined) { this.data.clientId = ""; }
+    if (this.data.chatInitMessage === undefined) { this.data.chatInitMessage = ""; }
+    if (this.data.chatWhitelist === undefined) { this.data.chatWhitelist = []; }
+    if (this.data.guilds === undefined) { this.data.guilds = []; }
+    // save
     fs.writeFileSync(configPath, JSON.stringify(this.data, null, 4));
   }
 }
